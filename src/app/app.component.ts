@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
         message: string,
         data: Todo[]
       }) => {
-        console.log("todos", todos)
         this.todoList = todos.data;
       },
       (error) => {
