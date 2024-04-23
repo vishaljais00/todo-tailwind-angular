@@ -1,0 +1,53 @@
+<div class="fixed z-10 inset-0 overflow-y-auto" [ngClass]="{'hidden': !modalOpen}">
+    <div class="flex items-top justify-center  pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+      </div>
+  
+      <!-- Modal -->
+      <div class="inline-block align-top bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-top sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <form [formGroup]="todoForm" class="bg-white px-8 pt-6 pb-8 mb-4" (ngSubmit)="handleSubmit()">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="task">
+              Task
+            </label>
+            <input [ngClass]="{'border-red-400': (this.todoForm.get('task')?.value === '' && (this.todoForm.get('task')?.touched || this.formError ))}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="task" type="text" formControlName="task" placeholder="Enter task">
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="due_date">
+              Due Date
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="due_date" formControlName="due_date"  type="date">
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="priority">
+              Priority
+            </label>
+            <select formControlName="priority" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="priority">
+              <option value='true'>High</option>
+              <option value="false">Low</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="priority">
+              Status
+            </label>
+            <select formControlName="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="status">
+              <option value='Pending'>Pending</option>
+              <option value='Doing'>Doing</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" (click)="closeModal()">
+              Close
+            </button>
+            <button  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
+              {{mode === 'Add' ? 'Create' : 'Update'}} Todo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
